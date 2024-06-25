@@ -1,6 +1,6 @@
 # coexsys
 
-> This is a Project Management Tool made by Syncfusion Vue.js Components
+> This is a Project Management Tool made using Syncfusion Vue Components and Websocket
 
 ## Build Setup
 
