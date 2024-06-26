@@ -1,4 +1,4 @@
-export const projectNewData = [
+export const projectNewData: any[] = [
   {
     TaskID: 1,
     TaskName: "Product concept",
