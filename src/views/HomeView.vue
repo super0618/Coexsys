@@ -116,7 +116,6 @@ const projectEndDate = new Date('07/06/2024');
 
 <style scoped>
 .coexsys-toolbar {
-    margin-top: 50px;
     padding: 12px 24px;
 }
 
