@@ -1,0 +1,3 @@
+<template>
+    Critical Path
+</template>

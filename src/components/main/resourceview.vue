@@ -1,0 +1,3 @@
+<template>
+    Resource View
+</template>
