@@ -1,0 +1,3 @@
+<template>
+    Performance
+</template>
