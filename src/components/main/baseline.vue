@@ -10,41 +10,43 @@ const format = (value:any) => {
     return moment(value).format('hh:mm a')
 }
 
-const height = "600px";
-const projectStartDate = new Date('03/05/2024 09:30:00 AM');
-const projectEndDate = new Date('03/05/2024 07:00:00 PM');
-const dateFormat = "hh:mm a";
-const tooltipSettings = {
-    taskbar: "taskbarTooltipTemplate"
-};
-const dayWorkingTime = [{ from: 0, to: 24 }];
-const taskFields = {
-    id: 'TaskId',
-    name: 'TaskName',
-    startDate: 'StartDate',
-    endDate: 'EndDate',
-    baselineStartDate: 'BaselineStartDate',
-    baselineEndDate: 'BaselineEndDate'
-};
-const durationUnit = 'Minute';
-const columns : any = [
-    { field: 'TaskName', headerText: 'Service Name', width: '250', clipMode: 'EllipsisWithTooltip' },
-    { field: 'BaselineStartDate', headerText: 'Planned start time' },
-    { field: 'BaselineEndDate', headerText: 'Planned end time' },
-    { field: 'StartDate', headerText: 'Start time' },
-    { field: 'EndDate', headerText: 'End time' },
-];
-const timelineSettings : any= {
-    timelineUnitSize: 65,
-    topTier: {
-        unit: 'None',
+const
+    height = "600px",
+    taskFields = {
+      id: 'TaskId',
+      name: 'TaskName',
+      startDate: 'StartDate',
+      endDate: 'EndDate',
+      baselineStartDate: 'BaselineStartDate',
+      baselineEndDate: 'BaselineEndDate'
     },
-    bottomTier: {
-        unit: 'Minutes',
-        count: 15,
-        format: 'hh:mm a'
+    dateFormat = "hh:mm a",
+    tooltipSettings = {
+      taskbar: "taskbarTooltipTemplate"
     },
-};
+    dayWorkingTime = [{ from: 0, to: 24 }],
+    durationUnit = 'Minute',
+    columns : any = [
+      { field: 'TaskName', headerText: 'Service Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+      { field: 'BaselineStartDate', headerText: 'Planned start time' },
+      { field: 'BaselineEndDate', headerText: 'Planned end time' },
+      { field: 'StartDate', headerText: 'Start time' },
+      { field: 'EndDate', headerText: 'End time' },
+    ],
+    timelineSettings : any = {
+      timelineUnitSize: 65,
+      topTier: {
+          unit: 'None',
+      },
+      bottomTier: {
+          unit: 'Minutes',
+          count: 15,
+          format: 'hh:mm a'
+      },
+    },
+    projectStartDate = new Date('03/05/2024 09:30:00 AM'),
+    projectEndDate = new Date('03/05/2024 07:00:00 PM');
+
 </script>
 
 <template>
