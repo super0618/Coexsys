@@ -1,3 +1,3 @@
 <template>
-    Kanban
+    Kanban Template
 </template>
