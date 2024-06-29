@@ -1,6 +1,6 @@
 # Coexsys
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a Project Management Tool made by vue3 and syncfusion vue components.
 
 ## Recommended IDE Setup
 
