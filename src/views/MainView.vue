@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { IconFilePlus, IconUsersGroup, IconBorderLeft, IconTrendingUp, IconAsterisk, IconFolder, IconCheckbox, IconAlarm, IconHeartbeat, IconSettings, IconList, IconDashboard, IconId, IconShare, IconKey } from "@tabler/icons-vue";
+import { MultiSelectComponent } from "@syncfusion/ej2-vue-dropdowns";
+import { ButtonComponent } from "@syncfusion/ej2-vue-buttons";
+import { IconFilePlus, IconUsersGroup, IconBorderLeft, IconTrendingUp, IconAsterisk, IconFolder, IconCheckbox, IconAlarm, IconHeartbeat, IconSettings, IconList, IconDashboard, IconId, IconShare, IconKey, IconSend } from "@tabler/icons-vue";
 import { TabComponent, TabItemDirective, TabItemsDirective } from "@syncfusion/ej2-vue-navigations";
 import MainTemplate from "@/components/main/main.vue";
 import ResourceAllocationTemplate from "@/components/main/resourceallocation.vue";
@@ -13,6 +15,7 @@ import PerformanceTemplate from "@/components/main/performance.vue";
 
 import moment from "moment";
 
+const contacts = ["Badminton", "Basketball", "Cricket", "Football", "Golf", "Gymnastics", "Hockey", "Rugby", "Snooker", "Tennis"];
 const projectName = ref("proj1");
 const projectOwner = ref("owner1");
 
@@ -69,43 +72,63 @@ const endTime = moment().format("DD/MM/YYYY");
     <IconKey size="24" />
   </div>
 
-  <div style="padding: 0 24px">
-    <TabComponent>
-      <TabItemsDirective>
-        <TabItemDirective :header="{ text: 'Main' }" :content="'MainTemplate'"></TabItemDirective>
-        <template v-slot:MainTemplate>
-          <MainTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Resource Allocation' }" :content="'ResourceAllocationTemplate'"> </TabItemDirective>
-        <template v-slot:ResourceAllocationTemplate>
-          <ResourceAllocationTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Resource View' }" :content="'ResourceViewTemplate'"> </TabItemDirective>
-        <template v-slot:ResourceViewTemplate>
-          <ResourceViewTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Kanban' }" :content="'KanbanTemplate'"> </TabItemDirective>
-        <template v-slot:KanbanTemplate>
-          <KanbanTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'TaskTimeline' }" :content="'TaskTimelineTemplate'"> </TabItemDirective>
-        <template v-slot:TaskTimelineTemplate>
-          <TaskTimelineTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Baseline' }" :content="'BaselineTemplate'"></TabItemDirective>
-        <template v-slot:BaselineTemplate>
-          <BaselineTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Critical Path' }" :content="'CriticalPathTemplate'"> </TabItemDirective>
-        <template v-slot:CriticalPathTemplate>
-          <CriticalPathTemplate />
-        </template>
-        <TabItemDirective :header="{ text: 'Performance' }" :content="'PerformanceTemplate'"></TabItemDirective>
-        <template v-slot:PerformanceTemplate>
-          <PerformanceTemplate />
-        </template>
-      </TabItemsDirective>
-    </TabComponent>
+  <div class="content-wrapper">
+    <div class="overflow-auto">
+      <TabComponent>
+        <TabItemsDirective>
+          <TabItemDirective :header="{ text: 'Main' }" :content="'MainTemplate'"></TabItemDirective>
+          <template v-slot:MainTemplate>
+            <MainTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Resource Allocation' }" :content="'ResourceAllocationTemplate'"> </TabItemDirective>
+          <template v-slot:ResourceAllocationTemplate>
+            <ResourceAllocationTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Resource View' }" :content="'ResourceViewTemplate'"> </TabItemDirective>
+          <template v-slot:ResourceViewTemplate>
+            <ResourceViewTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Kanban' }" :content="'KanbanTemplate'"> </TabItemDirective>
+          <template v-slot:KanbanTemplate>
+            <KanbanTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'TaskTimeline' }" :content="'TaskTimelineTemplate'"> </TabItemDirective>
+          <template v-slot:TaskTimelineTemplate>
+            <TaskTimelineTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Baseline' }" :content="'BaselineTemplate'"></TabItemDirective>
+          <template v-slot:BaselineTemplate>
+            <BaselineTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Critical Path' }" :content="'CriticalPathTemplate'"> </TabItemDirective>
+          <template v-slot:CriticalPathTemplate>
+            <CriticalPathTemplate />
+          </template>
+          <TabItemDirective :header="{ text: 'Performance' }" :content="'PerformanceTemplate'"></TabItemDirective>
+          <template v-slot:PerformanceTemplate>
+            <PerformanceTemplate />
+          </template>
+        </TabItemsDirective>
+      </TabComponent>
+    </div>
+    <div>
+      <div class="d-flex justify-end">
+        <ButtonComponent style="margin-bottom: 5px" cssClass="e-small" :isPrimary="true">Close Project</ButtonComponent>
+      </div>
+      <div class="chat-form">
+        <div class="input-group">
+          <p class="form-label">Send To:</p>
+          <MultiSelectComponent :dataSource="contacts" mode="Box" placeholder=""></MultiSelectComponent>
+        </div>
+        <div class="flex-auto input-group">
+          <div class="chat-message"></div>
+        </div>
+        <div class="chat-input-form">
+          <input class="e-input" type="text" placeholder="" />
+          <ButtonComponent cssClass="e-small" :isPrimary="true">Send</ButtonComponent>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -113,20 +136,46 @@ const endTime = moment().format("DD/MM/YYYY");
 .coexsys-toolbar {
   padding: 12px 24px;
 }
-
 .coexsys-date-setting {
   margin-bottom: 8px;
   font-size: 14px;
   padding-left: 110px;
 }
-
-input,
-select {
-  padding: 4px 8px;
-  min-width: 200px;
+.content-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: auto 320px;
 }
-
 p {
   margin: 0;
+}
+.chat-form {
+  background-color: #eee;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+p.form-label {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+.chat-message {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 100%;
+  background-color: #fff;
+}
+.chat-input-form {
+  display: grid;
+  grid-template-columns: auto 60px;
+}
+.send-btn {
+  display: grid;
+  place-items: center;
+  color: #333;
+  cursor: pointer;
 }
 </style>

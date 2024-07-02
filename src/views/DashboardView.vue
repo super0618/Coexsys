@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { DropDownListComponent } from "@syncfusion/ej2-vue-dropdowns";
-import OverviewCard from "@/components/dashboard/overview-card.vue";
-import iconProject from "@/components/dashboard/icon-project.vue";
-import iconTask from "@/components/dashboard/icon-task.vue";
-import iconResource from "@/components/dashboard/icon-resource.vue";
-import iconTimespent from "@/components/dashboard/icon-timespent.vue";
+import OverviewProjectsCard from "@/components/dashboard/overview-projects-card.vue";
+import OverviewTasksCard from "@/components/dashboard/overview-tasks-card.vue";
+import OverviewResourcesCard from "@/components/dashboard/overview-resources-card.vue";
+import OverviewTimespentCard from "@/components/dashboard/overview-time-card.vue";
+import ProfileSummaryCard from "@/components/dashboard/profile-summary-card.vue";
+import OverallProgressCard from "@/components/dashboard/overall-progress-card.vue";
+import MilestoneProgressCard from "@/components/dashboard/milestone-progress-card.vue";
 
-const dateRange = ref(1);
-const data = [
-  { id: "1", text: "Last 30 days" },
-  { id: "2", text: "Last 7 days" },
-  { id: "3", text: "Last 24 Hours" },
+const dateRange = [
+  { value: 1, text: "Last 30 days" },
+  { value: 2, text: "Last 7 days" },
+  { value: 3, text: "Last 24 Hours" },
 ];
 </script>
 
@@ -20,14 +20,25 @@ const data = [
     <div class="header">
       <p class="header-title">Dashboard</p>
       <div class="range-picker">
-        <DropDownListComponent :dataSource="data" v-model="dateRange" :fields="{ value: 'id', text: 'text' }"></DropDownListComponent>
+        <DropDownListComponent :dataSource="dateRange" :fields="{ value: 'value', text: 'text' }" :value="1"></DropDownListComponent>
       </div>
     </div>
+
     <div class="overview-container">
-      <OverviewCard title="Projects" :icon="iconProject"> </OverviewCard>
-      <OverviewCard title="Tasks" :icon="iconTask"></OverviewCard>
-      <OverviewCard title="Resources" :icon="iconResource"></OverviewCard>
-      <OverviewCard title="Time Spent" :icon="iconTimespent"></OverviewCard>
+      <OverviewProjectsCard :curVal="850" :totalVal="1100" :rate="-10" />
+      <OverviewTasksCard :curVal="100" :totalVal="110" :rate="-5" />
+      <OverviewResourcesCard :curVal="85" :totalVal="90" :rate="5" />
+      <OverviewTimespentCard :curVal="752" :totalVal="885" :rate="-3" />
+    </div>
+
+    <div class="summary-container">
+      <ProfileSummaryCard />
+      <OverallProgressCard />
+    </div>
+
+    <div class="summary-container">
+      <MilestoneProgressCard />
+      <OverallProgressCard />
     </div>
   </div>
 </template>
@@ -54,11 +65,18 @@ const data = [
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
+  margin-bottom: 24px;
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   @media (max-width: 500px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+}
+.summary-container {
+  display: grid;
+  grid-template-columns: auto 360px;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 </style>
