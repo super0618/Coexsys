@@ -6,7 +6,7 @@ import moment from "moment";
 
 provide("gantt", [Selection]);
 
-const height = "600px",
+const height = "700px",
   taskFields = {
     id: "TaskId",
     name: "TaskName",
@@ -40,7 +40,22 @@ const height = "600px",
 </script>
 
 <template>
-  <GanttComponent :height :dataSource="baselineData" :taskFields :columns :renderBaseline :allowSelection :includeWeekend :timelineSettings :tooltipSettings :durationUnit :dateFormat :dayWorkingTime :projectStartDate :projectEndDate>
+  <GanttComponent
+    :height
+    :dataSource="baselineData"
+    :taskFields
+    :columns
+    :renderBaseline
+    :allowSelection
+    :includeWeekend
+    :timelineSettings
+    :tooltipSettings
+    :durationUnit
+    :dateFormat
+    :dayWorkingTime
+    :projectStartDate
+    :projectEndDate
+  >
     <template v-slot:taskbarTooltipTemplate="{ data }">
       <div>
         <table>

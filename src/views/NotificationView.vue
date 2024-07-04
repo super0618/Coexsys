@@ -15,6 +15,7 @@ const mentions = [
 
 <template>
   <div class="notification-container">
+    <h1 class="text-center">Notifications</h1>
     <TabComponent>
       <TabItemsDirective>
         <TabItemDirective :header="{ text: 'Notifications' }" :content="'NotificationsTemplate'"></TabItemDirective>
@@ -58,7 +59,8 @@ const mentions = [
 
 <style scoped>
 .notification-container {
-  width: 500px;
+  width: 600px;
+  margin: 0 auto;
 }
 .content-wrapper {
   padding: 6px 12px;
@@ -69,5 +71,9 @@ td {
   border: 1px solid #999;
   border-collapse: collapse;
   padding: 4px 8px;
+}
+tr:hover {
+  background-color: #eee;
+  cursor: pointer;
 }
 </style>

@@ -1,8 +1,25 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MultiSelectComponent } from "@syncfusion/ej2-vue-dropdowns";
+import { TooltipComponent } from "@syncfusion/ej2-vue-popups";
+import { DropDownListComponent, MultiSelectComponent } from "@syncfusion/ej2-vue-dropdowns";
 import { ButtonComponent } from "@syncfusion/ej2-vue-buttons";
-import { IconFilePlus, IconUsersGroup, IconBorderLeft, IconTrendingUp, IconAsterisk, IconFolder, IconCheckbox, IconAlarm, IconHeartbeat, IconSettings, IconList, IconDashboard, IconId, IconShare, IconKey, IconSend } from "@tabler/icons-vue";
+import {
+  IconFilePlus,
+  IconUsersGroup,
+  IconBorderLeft,
+  IconTrendingUp,
+  IconAsterisk,
+  IconFolder,
+  IconCheckbox,
+  IconAlarm,
+  IconHeartbeat,
+  IconSettings,
+  IconList,
+  IconDashboard,
+  IconId,
+  IconShare,
+  IconKey,
+} from "@tabler/icons-vue";
 import { TabComponent, TabItemDirective, TabItemsDirective } from "@syncfusion/ej2-vue-navigations";
 import MainTemplate from "@/components/main/main.vue";
 import ResourceAllocationTemplate from "@/components/main/resourceallocation.vue";
@@ -15,7 +32,28 @@ import PerformanceTemplate from "@/components/main/performance.vue";
 
 import moment from "moment";
 
-const contacts = ["Badminton", "Basketball", "Cricket", "Football", "Golf", "Gymnastics", "Hockey", "Rugby", "Snooker", "Tennis"];
+const contacts = [
+  "Badminton",
+  "Basketball",
+  "Cricket",
+  "Football",
+  "Golf",
+  "Gymnastics",
+  "Hockey",
+  "Rugby",
+  "Snooker",
+  "Tennis",
+];
+const projList = [
+  { value: "proj1", text: "Project1" },
+  { value: "proj2", text: "Project2" },
+  { value: "proj3", text: "Project3" },
+];
+const ownerList = [
+  { value: "owner1", text: "Owner1" },
+  { value: "owner2", text: "Owner2" },
+  { value: "owner3", text: "Owner3" },
+];
 const projectName = ref("proj1");
 const projectOwner = ref("owner1");
 
@@ -25,51 +63,96 @@ const endTime = moment().format("DD/MM/YYYY");
 
 <template>
   <div class="coexsys-toolbar">
-    <div class="d-flex justify-between mb-2">
+    <div class="project-tools">
       <div class="d-flex items-center gap-2">
-        <label style="text-wrap: nowrap">Project Name:</label>
-        <select v-model="projectName">
-          <option value="proj1">Project 1</option>
-          <option value="proj2">Project 2</option>
-          <option value="proj3">Project 3</option>
-        </select>
+        <label style="text-wrap: nowrap; width: 110px">Project Name:</label>
+        <DropDownListComponent
+          width="200px"
+          :dataSource="projList"
+          :fields="{ value: 'value', text: 'text' }"
+          :value="projectName"
+        />
         <IconFilePlus size="20" />
       </div>
       <div class="d-flex gap-2">
-        <IconUsersGroup size="20" />
-        <IconBorderLeft size="20" />
-        <IconTrendingUp size="20" />
-        <IconAsterisk size="20" />
-        <IconFolder size="20" />
-        <IconCheckbox size="20" />
-        <IconAlarm size="20" />
-        <IconHeartbeat size="20" />
-        <IconSettings size="20" />
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconUsersGroup size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconBorderLeft size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconTrendingUp size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconAsterisk size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconFolder size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconCheckbox size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconAlarm size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconHeartbeat size="20" />
+        </TooltipComponent>
+        <TooltipComponent position="TopCenter" content="tooltip here">
+          <IconSettings size="20" />
+        </TooltipComponent>
       </div>
     </div>
 
     <div class="coexsys-date-setting">
-      <p>{{ `Schedule Start: ${startTime} Schedule End: ${endTime} TimeZone: PST` }}</p>
-      <p>Timesheet Perioud Type: Monthly</p>
+      <p class="d-flex gap-6">
+        <span>
+          <span style="font-weight: 600">Schedule Start: </span>
+          {{ startTime }}
+        </span>
+        <span>
+          <span style="font-weight: 600">Schedule End: </span>
+          {{ endTime }}
+        </span>
+        <span>
+          <span style="font-weight: 600">TimeZone: </span>
+          PST
+        </span>
+      </p>
+      <p><span style="font-weight: 600">Timesheet Period Type</span>: Monthly</p>
     </div>
 
     <div class="d-flex items-center gap-2">
-      <label style="text-wrap: nowrap">Project Owner:</label>
-      <select v-model="projectOwner">
-        <option value="owner1">Owner 1</option>
-        <option value="owner2">Owner 2</option>
-        <option value="owner3">Owner 3</option>
-      </select>
+      <label style="text-wrap: nowrap; width: 110px">Project Owner:</label>
+      <DropDownListComponent
+        width="200px"
+        :dataSource="ownerList"
+        :fields="{ value: 'value', text: 'text' }"
+        :value="projectOwner"
+      />
     </div>
-  </div>
 
-  <div class="d-flex items-center gap-4" style="padding: 16px 24px 8px">
-    <IconList size="24" />
-    <IconDashboard size="24" />
-    <IconId size="24" />
-    <IconShare size="24" />
-    <IconUsersGroup size="24" />
-    <IconKey size="24" />
+    <div class="d-flex items-center gap-4" style="padding: 16px 0 8px">
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconList size="24" />
+      </TooltipComponent>
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconDashboard size="24" />
+      </TooltipComponent>
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconId size="24" />
+      </TooltipComponent>
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconShare size="24" />
+      </TooltipComponent>
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconUsersGroup size="24" />
+      </TooltipComponent>
+      <TooltipComponent position="TopCenter" content="tooltip here">
+        <IconKey size="24" />
+      </TooltipComponent>
+    </div>
   </div>
 
   <div class="content-wrapper">
@@ -80,7 +163,8 @@ const endTime = moment().format("DD/MM/YYYY");
           <template v-slot:MainTemplate>
             <MainTemplate />
           </template>
-          <TabItemDirective :header="{ text: 'Resource Allocation' }" :content="'ResourceAllocationTemplate'"> </TabItemDirective>
+          <TabItemDirective :header="{ text: 'Resource Allocation' }" :content="'ResourceAllocationTemplate'">
+          </TabItemDirective>
           <template v-slot:ResourceAllocationTemplate>
             <ResourceAllocationTemplate />
           </template>
@@ -112,8 +196,8 @@ const endTime = moment().format("DD/MM/YYYY");
       </TabComponent>
     </div>
     <div>
-      <div class="d-flex justify-end">
-        <ButtonComponent style="margin-bottom: 5px" cssClass="e-small" :isPrimary="true">Close Project</ButtonComponent>
+      <div class="d-flex justify-end" style="padding: 3px 0">
+        <ButtonComponent cssClass="e-small" :isPrimary="true">Close Project</ButtonComponent>
       </div>
       <div class="chat-form">
         <div class="input-group">
@@ -136,10 +220,23 @@ const endTime = moment().format("DD/MM/YYYY");
 .coexsys-toolbar {
   padding: 12px 24px;
 }
+.project-tools {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 700px;
+  row-gap: 16px;
+  margin-bottom: 12px;
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: start;
+  }
+}
 .coexsys-date-setting {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-size: 14px;
-  padding-left: 110px;
+  padding-left: 116px;
 }
 .content-wrapper {
   width: 100%;
@@ -153,7 +250,7 @@ p {
 }
 .chat-form {
   background-color: #eee;
-  height: 600px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -177,5 +274,10 @@ p.form-label {
   place-items: center;
   color: #333;
   cursor: pointer;
+}
+</style>
+<style>
+.tooltip-default #property {
+  padding-top: 200px;
 }
 </style>

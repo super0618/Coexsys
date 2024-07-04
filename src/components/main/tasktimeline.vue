@@ -18,7 +18,7 @@ const formatDate = (dateString: any) => {
   return date.toLocaleDateString("en-US", options);
 };
 
-const height = "600px",
+const height = "700px",
   taskFields = {
     id: "TaskID",
     name: "TaskName",
@@ -49,10 +49,47 @@ const height = "600px",
 </script>
 
 <template>
-  <GanttComponent ref="gantt" id="labelData" :dataSource="timelineTemplateData" :rowHeight="46" :height :highlightWeekends :allowSelection :taskFields :labelSettings :columns="columns" :splitterSettings :projectStartDate :timelineSettings :projectEndDate :timelineTemplate="'timelineTemplates'">
+  <GanttComponent
+    ref="gantt"
+    id="labelData"
+    :dataSource="timelineTemplateData"
+    :rowHeight="46"
+    :height
+    :highlightWeekends
+    :allowSelection
+    :taskFields
+    :labelSettings
+    :columns="columns"
+    :splitterSettings
+    :projectStartDate
+    :timelineSettings
+    :projectEndDate
+    :timelineTemplate="'timelineTemplates'"
+  >
     <template v-slot:timelineTemplates="{ data }">
-      <div v-if="data.tier === 'topTier'" class="e-gantt-top-cell-text e-header-cell-label" style="width: 100%; font-weight: bold; height: 100%; display: flex; justify-content: center; align-items: center" title="${data.date}">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column">
+      <div
+        v-if="data.tier === 'topTier'"
+        class="e-gantt-top-cell-text e-header-cell-label"
+        style="
+          width: 100%;
+          font-weight: bold;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        title="${data.date}"
+      >
+        <div
+          style="
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          "
+        >
           <div style="line-height: initial; font-weight: normal">{{ weekDate(data.date) }}</div>
           <div style="line-height: normal; padding-top: 5px; padding-bottom: 2px; font-weight: normal">
             {{ formatDate(data.date) }}

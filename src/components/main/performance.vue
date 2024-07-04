@@ -1,8 +1,25 @@
 <script setup lang="ts">
 import { provide, createApp } from "vue";
 import { addClass, isNullOrUndefined } from "@syncfusion/ej2-base";
-import { ChartComponent, SeriesDirective, SeriesCollectionDirective, ColumnSeries, Category, DataLabel, Tooltip, Legend, Highlight } from "@syncfusion/ej2-vue-charts";
-import { TreeGridComponent, ColumnDirective, ColumnsDirective, Filter, Sort, Reorder } from "@syncfusion/ej2-vue-treegrid";
+import {
+  ChartComponent,
+  SeriesDirective,
+  SeriesCollectionDirective,
+  ColumnSeries,
+  Category,
+  DataLabel,
+  Tooltip,
+  Legend,
+  Highlight,
+} from "@syncfusion/ej2-vue-charts";
+import {
+  TreeGridComponent,
+  ColumnDirective,
+  ColumnsDirective,
+  Filter,
+  Sort,
+  Reorder,
+} from "@syncfusion/ej2-vue-treegrid";
 import { Column, getObject } from "@syncfusion/ej2-grids";
 import type { QueryCellInfoEventArgs } from "@syncfusion/ej2-grids";
 import type { ITreeData } from "@syncfusion/ej2-vue-treegrid";
@@ -15,7 +32,19 @@ import { countries } from "@/data/tabledata";
 provide("chart", [ColumnSeries, Legend, DataLabel, Category, Tooltip, Highlight]);
 provide("treegrid", [Filter, Sort, Reorder]);
 
-const data = ["Badminton", "Basketball", "Cricket", "Football", "Golf", "Gymnastics", "Hockey", "Rugby", "Snooker", "Tennis"];
+const height = "700px";
+const data = [
+  "Badminton",
+  "Basketball",
+  "Cricket",
+  "Football",
+  "Golf",
+  "Gymnastics",
+  "Hockey",
+  "Rugby",
+  "Snooker",
+  "Tennis",
+];
 const seriesData = [
     { Country: "GBR", GoldMedal: 27, SilverMedal: 23, BronzeMedal: 17, MappingName: "Great Britain" },
     { Country: "CHN", GoldMedal: 26, SilverMedal: 18, BronzeMedal: 26, MappingName: "China" },
@@ -45,8 +74,9 @@ const seriesData = [
     majorTickLines: { width: 0 },
     lineStyle: { width: 0 },
   },
-  width = "100%",
-  marker: MarkerSettingsModel = { dataLabel: { visible: false, position: "Top", font: { fontWeight: "600", color: "#ffffff" } } },
+  marker: MarkerSettingsModel = {
+    dataLabel: { visible: false, position: "Top", font: { fontWeight: "600", color: "#ffffff" } },
+  },
   legendSettings = { enableHighlight: true },
   tooltip = {
     enable: true,
@@ -98,7 +128,8 @@ const filterSettings: FilterSettingsModel = { type: "Excel" },
   locationTemplate = function () {
     return {
       template: createApp({}).component("locationTemplate", {
-        template: '<div id="coordinates"><img src="source/tree-grid/images/Map.png" class="e-image" :alt="data.coordinates" aria-label="Location template"/> &nbsp <a target="_blank" href="https://www.google.com/maps/place/${data.coordinates}">{{data.coordinates}}</a></div>',
+        template:
+          '<div id="coordinates"><img src="source/tree-grid/images/Map.png" class="e-image" :alt="data.coordinates" aria-label="Location template"/> &nbsp <a target="_blank" href="https://www.google.com/maps/place/${data.coordinates}">{{data.coordinates}}</a></div>',
         data: function () {
           return { data: {} };
         },
@@ -205,7 +236,7 @@ const filterSettings: FilterSettingsModel = { type: "Excel" },
 </script>
 
 <template>
-  <div class="performance-container">
+  <div class="performance-container" style="height: 700px; overflow: auto">
     <div class="d-flex justify-between items-start mb-4">
       <div style="width: 400px; padding-left: 30px">
         <MultiSelectComponent :dataSource="data" mode="Box" placeholder=""></MultiSelectComponent>
@@ -213,24 +244,102 @@ const filterSettings: FilterSettingsModel = { type: "Excel" },
       <ButtonComponent :isPrimary="true" style="width: 64px">PDF</ButtonComponent>
     </div>
 
-    <ChartComponent theme="Material" align="center" :title :primaryXAxis :primaryYAxis :chartArea :width :tooltip :legendSettings>
+    <ChartComponent
+      width="90%"
+      height="400px"
+      theme="Material"
+      align="center"
+      :title
+      :primaryXAxis
+      :primaryYAxis
+      :chartArea
+      :tooltip
+      :legendSettings
+    >
       <SeriesCollectionDirective>
-        <SeriesDirective :dataSource="seriesData" type="Column" xName="Country" yName="GoldMedal" name="Gold" :width="2" :marker tooltipMappingName="MappingName" :columnSpacing="0.1"></SeriesDirective>
-        <SeriesDirective :dataSource="seriesData" type="Column" xName="Country" yName="SilverMedal" name="Silver" :width="2" :marker tooltipMappingName="MappingName" :columnSpacing="0.1"></SeriesDirective>
-        <SeriesDirective :dataSource="seriesData" type="Column" xName="Country" yName="BronzeMedal" name="Bronze" :width="2" :marker tooltipMappingName="MappingName" :columnSpacing="0.1"></SeriesDirective>
+        <SeriesDirective
+          :dataSource="seriesData"
+          type="Column"
+          xName="Country"
+          yName="GoldMedal"
+          name="Gold"
+          :width="2"
+          :marker
+          tooltipMappingName="MappingName"
+          :columnSpacing="0.1"
+        ></SeriesDirective>
+        <SeriesDirective
+          :dataSource="seriesData"
+          type="Column"
+          xName="Country"
+          yName="SilverMedal"
+          name="Silver"
+          :width="2"
+          :marker
+          tooltipMappingName="MappingName"
+          :columnSpacing="0.1"
+        ></SeriesDirective>
+        <SeriesDirective
+          :dataSource="seriesData"
+          type="Column"
+          xName="Country"
+          yName="BronzeMedal"
+          name="Bronze"
+          :width="2"
+          :marker
+          tooltipMappingName="MappingName"
+          :columnSpacing="0.1"
+        ></SeriesDirective>
       </SeriesCollectionDirective>
     </ChartComponent>
 
-    <TreeGridComponent :dataSource="countries" childMapping="states" :height="400" :allowReordering="true" :allowFiltering="true" :allowSorting="true" :filterSettings="filterSettings" :queryCellInfo="queryCellInfo">
+    <TreeGridComponent
+      :dataSource="countries"
+      childMapping="states"
+      :height="400"
+      :allowReordering="true"
+      :allowFiltering="true"
+      :allowSorting="true"
+      :filterSettings="filterSettings"
+      :queryCellInfo="queryCellInfo"
+    >
       <ColumnsDirective>
         <ColumnDirective field="name" headerText="Province" width="210" :template="flagtemplate"></ColumnDirective>
-        <ColumnDirective field="population" headerText="Population (Million)" width="188" textAlign="Right"></ColumnDirective>
+        <ColumnDirective
+          field="population"
+          headerText="Population (Million)"
+          width="188"
+          textAlign="Right"
+        ></ColumnDirective>
         <ColumnDirective field="gdp" headerText="GDP Rate %" :template="gdpTemplate" width="150"></ColumnDirective>
-        <ColumnDirective field="rating" headerText="Credit Rating" width="150" :template="ratingTemplate" :allowFiltering="false"></ColumnDirective>
-        <ColumnDirective field="unemployment" headerText="Unemployment Rate" :allowFiltering="false" width="170" :template="unemploymentTemplate"></ColumnDirective>
-        <ColumnDirective field="coordinates" headerText="Coordinates" width="220" :allowSorting="false" :template="locationTemplate"></ColumnDirective>
+        <ColumnDirective
+          field="rating"
+          headerText="Credit Rating"
+          width="150"
+          :template="ratingTemplate"
+          :allowFiltering="false"
+        ></ColumnDirective>
+        <ColumnDirective
+          field="unemployment"
+          headerText="Unemployment Rate"
+          :allowFiltering="false"
+          width="170"
+          :template="unemploymentTemplate"
+        ></ColumnDirective>
+        <ColumnDirective
+          field="coordinates"
+          headerText="Coordinates"
+          width="220"
+          :allowSorting="false"
+          :template="locationTemplate"
+        ></ColumnDirective>
         <ColumnDirective field="area" headerText="Area" width="140" :template="areaTemplate"></ColumnDirective>
-        <ColumnDirective field="timezone" headerText="Time Zone" width="150" :template="timezoneTemplate"></ColumnDirective>
+        <ColumnDirective
+          field="timezone"
+          headerText="Time Zone"
+          width="150"
+          :template="timezoneTemplate"
+        ></ColumnDirective>
       </ColumnsDirective>
     </TreeGridComponent>
   </div>

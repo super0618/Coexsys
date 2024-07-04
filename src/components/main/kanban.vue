@@ -2,7 +2,7 @@
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from "@syncfusion/ej2-vue-kanban";
 import { kanbanData } from "@/data/tabledata";
 
-const height = "600px",
+const height = "700px",
   cardSettings = {
     contentField: "Summary",
     headerField: "Id",

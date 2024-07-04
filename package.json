@@ -18,11 +18,14 @@
     "@syncfusion/ej2-grids": "^26.1.40",
     "@syncfusion/ej2-vue-buttons": "^26.1.35",
     "@syncfusion/ej2-vue-charts": "^26.1.39",
+    "@syncfusion/ej2-vue-documenteditor": "^26.1.40",
     "@syncfusion/ej2-vue-dropdowns": "^26.1.39",
     "@syncfusion/ej2-vue-gantt": "^26.1.39",
     "@syncfusion/ej2-vue-grids": "^26.1.39",
     "@syncfusion/ej2-vue-kanban": "^26.1.35",
     "@syncfusion/ej2-vue-navigations": "^26.1.39",
+    "@syncfusion/ej2-vue-popups": "^26.1.38",
+    "@syncfusion/ej2-vue-splitbuttons": "^26.1.35",
     "@syncfusion/ej2-vue-treegrid": "^26.1.40",
     "@tabler/icons-vue": "^3.7.0",
     "moment": "^2.30.1",
@@ -44,7 +47,7 @@
     "start-server-and-test": "^2.0.4",
     "typescript": "~5.4.0",
     "vite": "^5.3.1",
-    "vite-plugin-vue-devtools": "^7.3.1",
+    "vite-plugin-vue-devtools": "^7.3.5",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.21"
   }

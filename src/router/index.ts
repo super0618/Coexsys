@@ -3,9 +3,10 @@ import DashboardView from "@/views/DashboardView.vue";
 import MainView from "@/views/MainView.vue";
 import NotificationView from "@/views/NotificationView.vue";
 import CollaborationView from "@/views/CollaborationView.vue";
+import RequirementView from "@/views/RequirementView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory("/psa/"),
   routes: [
     {
       path: "/",
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/collaborate",
       name: "collaboration",
       component: CollaborationView,
+    },
+    {
+      path: "/requirement",
+      name: "requirement",
+      component: RequirementView,
     },
   ],
 });
