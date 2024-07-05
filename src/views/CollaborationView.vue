@@ -1,6 +1,21 @@
 <script setup lang="ts">
+import { provide } from "vue";
 import { DropDownListComponent, MultiSelectComponent, ListBoxComponent } from "@syncfusion/ej2-vue-dropdowns";
 import { ButtonComponent } from "@syncfusion/ej2-vue-buttons";
+import {
+  RichTextEditorComponent,
+  Toolbar,
+  Link,
+  Image,
+  QuickToolbar,
+  HtmlEditor,
+  Table,
+  Video,
+  Audio,
+  PasteCleanup,
+} from "@syncfusion/ej2-vue-richtexteditor";
+
+provide("richtexteditor", [Toolbar, Link, Image, QuickToolbar, HtmlEditor, Table, Video, Audio, PasteCleanup]);
 
 const dropList = ["Tasks", "Scope/Requirements", "Assumptions", "Change Requests", "TimeSheets", "Risks", "Documents"];
 const list1 = [
@@ -27,14 +42,19 @@ const contacts = [
   "Snooker",
   "Tennis",
 ];
+const list3 = ["Document", "Document1", "Document2", "Document3", "Document4"];
 </script>
 
 <template>
   <div class="collaboration-container">
-    <h2 class="text-center">Team Collaboration</h2>
+    <div class="collaboration-header">
+      <p><span style="font-weight: 600">Project: </span>Digital Marketing Project</p>
+    </div>
+    <div style="padding: 0 24px 16px">
+      <DropDownListComponent width="300px" :dataSource="dropList" popupHeight="300px" placeholder="" />
+    </div>
     <div class="content-wrapper">
       <div class="left-content">
-        <DropDownListComponent :dataSource="dropList" popupHeight="300px" width="100%" placeholder="" />
         <div class="listbox-container">
           <div class="dropdown1">
             <ListBoxComponent :dataSource="list1" height="100%" />
@@ -44,7 +64,7 @@ const contacts = [
           </div>
         </div>
       </div>
-      <div class="right-content">
+      <div class="main-content">
         <div class="input-group">
           <p class="form-label">Send To:</p>
           <MultiSelectComponent :dataSource="contacts" mode="Box" placeholder=""></MultiSelectComponent>
@@ -53,9 +73,14 @@ const contacts = [
           <div class="chat-message"></div>
         </div>
         <div class="chat-input-form">
-          <input class="e-input" type="text" placeholder="" />
-          <ButtonComponent cssClass="e-small" :isPrimary="true">Send</ButtonComponent>
+          <RichTextEditorComponent height="200px" width="100%" style="overflow: hidden" />
+          <div class="send-btn">
+            <ButtonComponent :isPrimary="true">Send</ButtonComponent>
+          </div>
         </div>
+      </div>
+      <div class="right-content">
+        <ListBoxComponent :dataSource="list3" height="100%" />
       </div>
     </div>
   </div>
@@ -67,20 +92,18 @@ const contacts = [
   flex-direction: column;
   height: 100vh;
 }
+.collaboration-header {
+  padding: 16px 24px;
+}
 .content-wrapper {
-  width: 100%;
   flex: 1 1 auto;
   display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  @media (max-width: 900px) {
-    flex-direction: column;
-  }
+  width: 100%;
 }
 .left-content {
   display: flex;
   flex-direction: column;
-  flex: 0 0 430px;
+  flex: 0 0 400px;
 }
 .listbox-container {
   display: flex;
@@ -91,7 +114,7 @@ const contacts = [
   }
 }
 .dropdown1 {
-  flex: 0 0 230px;
+  flex: 0 0 200px;
 }
 .dropdown2 {
   flex: 0 0 200px;
@@ -99,7 +122,7 @@ const contacts = [
 p {
   margin: 0;
 }
-.right-content {
+.main-content {
   flex: 1 1 auto;
   background-color: #eee;
   display: flex;
@@ -116,14 +139,16 @@ p.form-label {
   height: 100%;
   background-color: #fff;
 }
+.right-content {
+  flex: 0 0 200px;
+}
 .chat-input-form {
-  display: grid;
-  grid-template-columns: auto 60px;
+  position: relative;
 }
 .send-btn {
-  display: grid;
-  place-items: center;
-  color: #333;
-  cursor: pointer;
+  z-index: 5;
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
 }
 </style>

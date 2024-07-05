@@ -3,23 +3,6 @@ import { ref } from "vue";
 import { TooltipComponent } from "@syncfusion/ej2-vue-popups";
 import { DropDownListComponent, MultiSelectComponent } from "@syncfusion/ej2-vue-dropdowns";
 import { ButtonComponent } from "@syncfusion/ej2-vue-buttons";
-import {
-  IconFilePlus,
-  IconUsersGroup,
-  IconBorderLeft,
-  IconTrendingUp,
-  IconAsterisk,
-  IconFolder,
-  IconCheckbox,
-  IconAlarm,
-  IconHeartbeat,
-  IconSettings,
-  IconList,
-  IconDashboard,
-  IconId,
-  IconShare,
-  IconKey,
-} from "@tabler/icons-vue";
 import { TabComponent, TabItemDirective, TabItemsDirective } from "@syncfusion/ej2-vue-navigations";
 import MainTemplate from "@/components/main/main.vue";
 import ResourceAllocationTemplate from "@/components/main/resourceallocation.vue";
@@ -29,7 +12,6 @@ import TaskTimelineTemplate from "@/components/main/tasktimeline.vue";
 import BaselineTemplate from "@/components/main/baseline.vue";
 import CriticalPathTemplate from "@/components/main/criticalpath.vue";
 import PerformanceTemplate from "@/components/main/performance.vue";
-
 import moment from "moment";
 
 const contacts = [
@@ -72,35 +54,37 @@ const endTime = moment().format("DD/MM/YYYY");
           :fields="{ value: 'value', text: 'text' }"
           :value="projectName"
         />
-        <IconFilePlus size="20" />
+        <TooltipComponent position="TopCenter" content="Create New Project">
+          <img src="@/assets/icons/icon-new_project.svg" alt="New Project" width="20" />
+        </TooltipComponent>
       </div>
       <div class="d-flex gap-2">
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconUsersGroup size="20" />
+        <TooltipComponent position="TopCenter" content="Stakeholders">
+          <img src="@/assets/icons/icon-stakeholders.svg" alt="Stakeholders" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconBorderLeft size="20" />
+        <TooltipComponent position="TopCenter" content="Scope/Requirements">
+          <img src="@/assets/icons/icon-scope.svg" alt="Scope" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconTrendingUp size="20" />
+        <TooltipComponent position="TopCenter" content="Assumptions">
+          <img src="@/assets/icons/icon-assumptions.svg" alt="Assumptions" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconAsterisk size="20" />
+        <TooltipComponent position="TopCenter" content="Risks Management">
+          <img src="@/assets/icons/icon-risks.svg" alt="Risks" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconFolder size="20" />
+        <TooltipComponent position="TopCenter" content="Project Documents">
+          <img src="@/assets/icons/icon-documents.svg" alt="Project Documents" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconCheckbox size="20" />
+        <TooltipComponent position="TopCenter" content="Time Tracking">
+          <img src="@/assets/icons/icon-time_tracking.svg" alt="Time Tracking" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconAlarm size="20" />
+        <TooltipComponent position="TopCenter" content="Change Management">
+          <img src="@/assets/icons/icon-change.svg" alt="Change" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconHeartbeat size="20" />
+        <TooltipComponent position="TopCenter" content="Issues">
+          <img src="@/assets/icons/icon-issue.svg" alt="Issues" width="20" />
         </TooltipComponent>
-        <TooltipComponent position="TopCenter" content="tooltip here">
-          <IconSettings size="20" />
+        <TooltipComponent position="TopCenter" content="Change Control Board">
+          <img src="@/assets/icons/icon-ccb.svg" alt="Change Control Board" width="20" />
         </TooltipComponent>
       </div>
     </div>
@@ -134,23 +118,23 @@ const endTime = moment().format("DD/MM/YYYY");
     </div>
 
     <div class="d-flex items-center gap-4" style="padding: 16px 0 8px">
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconList size="24" />
+      <TooltipComponent position="TopCenter" content="Project Summary">
+        <img src="@/assets/icons/icon-project_summary.svg" alt="Project Summary" width="24" />
       </TooltipComponent>
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconDashboard size="24" />
+      <TooltipComponent position="TopCenter" content="Project Details">
+        <img src="@/assets/icons/icon-launch_details.svg" alt="Project Details" width="24" />
       </TooltipComponent>
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconId size="24" />
+      <TooltipComponent position="TopCenter" content="Project Contacts">
+        <img src="@/assets/icons/icon-project_contacts.svg" alt="Project Contacts" width="24" />
       </TooltipComponent>
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconShare size="24" />
+      <TooltipComponent position="TopCenter" content="Share Project">
+        <img src="@/assets/icons/icon-share_project.svg" alt="Share Project" width="24" />
       </TooltipComponent>
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconUsersGroup size="24" />
+      <TooltipComponent position="TopCenter" content="Collaboration">
+        <img src="@/assets/icons/icon-team_collaboration.svg" alt="Collaboration" width="24" />
       </TooltipComponent>
-      <TooltipComponent position="TopCenter" content="tooltip here">
-        <IconKey size="24" />
+      <TooltipComponent position="TopCenter" content="Manage Project Access">
+        <img src="@/assets/icons/icon-manage_access.svg" alt="Manage Project Access" width="24" />
       </TooltipComponent>
     </div>
   </div>

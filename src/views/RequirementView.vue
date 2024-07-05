@@ -2,9 +2,12 @@
 // @ts-nocheck
 import { provide, nextTick, ref } from "vue";
 import { DocumentEditorContainerComponent, Toolbar } from "@syncfusion/ej2-vue-documenteditor";
+import { TabComponent, TabItemDirective, TabItemsDirective } from "@syncfusion/ej2-vue-navigations";
 import { DropDownButtonComponent } from "@syncfusion/ej2-vue-splitbuttons";
+import { DropDownListComponent } from "@syncfusion/ej2-vue-dropdowns";
 import { ButtonComponent } from "@syncfusion/ej2-vue-buttons";
 import { defaultDocument } from "@/data/tabledata";
+import { IconDotsVertical, IconDownload, IconEye, IconPrinter } from "@tabler/icons-vue";
 
 provide("DocumentEditorContainer", [Toolbar]);
 
@@ -27,6 +30,12 @@ const hostUrl = "https://services.syncfusion.com/vue/production/api/documentedit
     { text: "Word Template (*.dotx)", id: "dotx" },
     { text: "Plain Text (*.txt)", id: "txt" },
   ],
+  editItems = [
+    { text: "Lock/Unlock", id: "sfdt" },
+    { text: "Requirement", id: "word" },
+    { text: "Delete Requirement", id: "dotx" },
+  ],
+  severityList = ["Business Critical", "Nice to have", "Future Planning"],
   onExport = function (args: any) {
     switch (args.item.id) {
       case "word":
@@ -116,69 +125,113 @@ nextTick(() => {
 </script>
 
 <template>
-  <div ref="de_titlebar" id="documenteditor_titlebar" class="e-de-ctn-title">
-    <div
-      v-on:keydown="titleBarKeydownEvent"
-      v-on:click="titleBarClickEvent"
-      class="single-line"
-      id="documenteditor_title_contentEditor"
-      title="Document Name. Click or tap to rename this document."
-      contenteditable="false"
-    >
-      <label v-on:blur="titleBarBlurEvent" id="documenteditor_title_name" :style="titileStyle">{{
-        documentName
-      }}</label>
-    </div>
-    <ButtonComponent
-      id="de-print"
-      :style="iconStyle"
-      :iconCss="printIconCss"
-      v-on:click="printBtnClick"
-      title="Print this document (Ctrl+P)."
-      >Print</ButtonComponent
-    >
-    <DropDownButtonComponent
-      ref="de-export"
-      :style="iconStyle"
-      :items="exportItems"
-      :iconCss="exportIconCss"
-      cssClass="e-caret-hide"
-      content="Download"
-      v-bind:select="onExport"
-      :open="openExportDropDown"
-      title="Download this document."
-    ></DropDownButtonComponent>
-  </div>
-  <DocumentEditorContainerComponent
-    ref="doceditcontainer"
-    :serviceUrl="hostUrl"
-    :enableToolbar="true"
-    class="document-editor"
-  />
+  <TabComponent>
+    <TabItemsDirective>
+      <TabItemDirective :header="{ text: 'Main' }" :content="'DraftTemplate'"></TabItemDirective>
+      <template v-slot:DraftTemplate>
+        <div ref="de_titlebar" id="documenteditor_titlebar" class="e-de-ctn-title">
+          <div class="d-flex items-center gap-4">
+            <span><span style="font-weight: 600">Requirement Id:&nbsp;</span>REQ001</span>
+            <div class="d-flex items-center">
+              Title:&nbsp;
+              <div
+                v-on:keydown="titleBarKeydownEvent"
+                v-on:click="titleBarClickEvent"
+                class="single-line"
+                id="documenteditor_title_contentEditor"
+                title="Document Name. Click or tap to rename this document."
+                contenteditable="false"
+              >
+                <label v-on:blur="titleBarBlurEvent" id="documenteditor_title_name" :style="titileStyle">{{
+                  documentName
+                }}</label>
+              </div>
+            </div>
+            <div class="d-flex items-center">
+              Severity:&nbsp;
+              <DropDownListComponent
+                width="200px"
+                :dataSource="severityList"
+                :fields="{ value: 'value', text: 'text' }"
+              />
+            </div>
+            <span><span style="font-weight: 600">Version:&nbsp;</span>2.x</span>
+            <span><span style="font-weight: 600">Status:&nbsp;</span>Locked</span>
+            <span style="color: #2e74b5">Previous Version</span>
+          </div>
+          <div class="d-flex items-center">
+            <ButtonComponent :style="iconStyle" title="View Requirement">
+              <IconEye size="20" color="#777" />
+            </ButtonComponent>
+            <ButtonComponent :style="iconStyle" v-on:click="printBtnClick" title="Print this document (Ctrl+P).">
+              <IconPrinter size="20" color="#777" />
+            </ButtonComponent>
+            <DropDownButtonComponent
+              :style="iconStyle"
+              :items="exportItems"
+              cssClass="e-caret-hide"
+              v-bind:select="onExport"
+              :open="openExportDropDown"
+              title="Download this document."
+            >
+              <IconDownload size="20" color="#777" />
+            </DropDownButtonComponent>
+            <DropDownButtonComponent
+              :style="iconStyle"
+              :items="editItems"
+              cssClass="e-caret-hide"
+              v-bind:select="onExport"
+              :open="openExportDropDown"
+              title="Download this document."
+            >
+              <IconDotsVertical size="20" color="#777" />
+            </DropDownButtonComponent>
+          </div>
+        </div>
+        <DocumentEditorContainerComponent
+          ref="doceditcontainer"
+          :serviceUrl="hostUrl"
+          :enableToolbar="true"
+          class="document-editor"
+        />
+      </template>
+      <TabItemDirective :header="{ text: 'Resource Allocation' }" :content="'ExistingTemplate'"> </TabItemDirective>
+      <template v-slot:ExistingTemplate>
+        <div>123</div>
+      </template>
+    </TabItemsDirective>
+  </TabComponent>
 </template>
 <style>
 .document-editor {
-  height: calc(100vh - 36px) !important;
+  height: calc(100vh - 80px) !important;
 }
 #documenteditor_titlebar {
-  height: 36px;
+  height: 48px;
   line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   font-size: 12px;
-  padding-left: 15px;
-  padding-right: 10px;
   font-family: inherit;
+  background-color: transparent;
+  color: #333;
+  padding: 8px;
 }
 
 #documenteditor_title_contentEditor {
-  height: 26px;
   max-width: 85%;
-  width: auto;
   overflow: hidden;
   display: inline-block;
-  padding-left: 4px;
-  padding-right: 4px;
-  margin: 5px;
+  width: 150px;
+  border: 1px solid #aaa !important;
+  padding: 1px 8px !important;
+  border-radius: 4px !important;
+}
+
+#documenteditor_title_contentEditor:focus {
+  outline: 4px solid #86b7fe88;
 }
 
 [contenteditable="true"].single-line {

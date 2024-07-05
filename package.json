@@ -25,6 +25,7 @@
     "@syncfusion/ej2-vue-kanban": "^26.1.35",
     "@syncfusion/ej2-vue-navigations": "^26.1.39",
     "@syncfusion/ej2-vue-popups": "^26.1.38",
+    "@syncfusion/ej2-vue-richtexteditor": "^26.1.40",
     "@syncfusion/ej2-vue-splitbuttons": "^26.1.35",
     "@syncfusion/ej2-vue-treegrid": "^26.1.40",
     "@tabler/icons-vue": "^3.7.0",

@@ -24,7 +24,7 @@ const mentions = [
             <table>
               <tbody>
                 <tr>
-                  <td class="text-center" width="1000px">Events</td>
+                  <td class="text-center" width="3000px">Events</td>
                   <td class="text-center" width="100px">Timestamp</td>
                 </tr>
                 <tr v-for="notification in notifications">
@@ -41,7 +41,7 @@ const mentions = [
             <table>
               <tbody>
                 <tr>
-                  <td class="text-center" width="1000px">Mentions</td>
+                  <td class="text-center" width="3000px">Mentions</td>
                   <td class="text-center" width="100px">Timestamp</td>
                 </tr>
                 <tr v-for="mention in mentions">
@@ -59,7 +59,6 @@ const mentions = [
 
 <style scoped>
 .notification-container {
-  width: 600px;
   margin: 0 auto;
 }
 .content-wrapper {
